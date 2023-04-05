@@ -7,31 +7,31 @@
 
 import UIKit
 
-final class GreetingViewController: UIViewController {
+class GreetingViewController: UIViewController {
 
     @IBOutlet var greetingLabel: UILabel!
     
-    var greetingText: String!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupGradientBackground()
-        greetingLabel.text = greetingText
+        view.setupGradientBackground()
+        greetingLabel.text = "Привет, \(user.greet)!\nМое имя \(user.person.name)."
     }
 }
 
-extension GreetingViewController {
-    private func setupGradientBackground() {
+extension UIView {
+    func setupGradientBackground() {
         let gradientLayer = CAGradientLayer()
         
-        gradientLayer.frame = view.bounds
+        gradientLayer.frame = self.bounds
         gradientLayer.colors = [
             UIColor.systemPink.cgColor,
             UIColor.purple.cgColor
         ]
         gradientLayer.shouldRasterize = true
         
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
